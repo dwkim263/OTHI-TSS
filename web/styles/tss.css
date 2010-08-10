@@ -1,0 +1,160 @@
+/* 
+    Document   : tss
+    Created on : Oct 26, 2008, 9:43:47 AM
+    Author     : Dong Won Kim
+    Description:
+        Purpose of the stylesheet follows.
+*/
+html {
+  margin-top: 5px;    
+  height: 100%;
+  margin-bottom: 1px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-size: 12px;
+    font-family: verdana;
+    padding: 0;
+    margin: 0;
+    color: black;    
+    background-color:  lavender;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a:hover {
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+input.button { cursor: pointer; }
+
+p { margin-top: 0; margin-bottom: 5px; }
+
+.error { color: red; }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  padding: 0;
+}
+
+table.menu {
+  width: 50%;
+  background-color: khaki;
+}
+
+table.subtitle {
+  width: 50%;
+}
+
+table.navigator_30 {
+  width: 50%;    
+  margin-bottom: 30px;
+}
+
+table.form {
+  width: 50%;
+  border-color:#cccccc ;   
+}
+
+table.build {
+  border-color:#cccccc ;   
+}
+
+td {
+    text-align: center;
+    font-family: verdana;
+    font-size: 12px;    
+}
+
+td.field {
+    text-align: left;
+    height: 25;
+}
+
+td.input {
+    text-align: left;
+    width: 40%;
+}
+
+td.error {
+    text-align: left;
+    width: 60%;
+}
+
+td.title {
+    height: 100;
+    font-size: 150%;
+}
+
+td.subtitle {
+    text-align:left;
+}
+
+td.item {
+    height: 70;
+    font-size: 120%;    
+}
+
+td.complete {    
+    height: 100;
+    font-size: 120%;
+}
+
+td.width_30 {
+    width:30%;
+}
+
+div {
+    text-align:center;
+    font-family: verdana;
+    font-size: 12px;
+}
+
+div#logo {
+    margin: 20px 0 10px 0;
+}
+
+div#logo img {
+    margin-left: 22px;
+    border: none;
+}
+
+div.height_10 {
+    height:10%;
+}
+
+div#footer {
+    margin-left: auto;
+    margin-right: auto;
+    color: #cccccc;
+    background-color: green;
+    width: 50%;
+    font-size: 10px;
+}
+
+div#footer div#copyright {
+    text-align:left;    
+    float: left;
+    width: 50%;
+}
+
+div#footer div#address {
+    text-align: right;    
+    float: right;
+    width: 50%;
+}
+
+div.clearer {
+    clear: both;
+}

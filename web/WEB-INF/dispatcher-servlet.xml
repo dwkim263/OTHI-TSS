@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+   <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
+    <!--
+           Most controllers will use the ControllerClassNameHandlerMapping above, but
+          for the index controller we are using ParameterizableViewController, so we must
+          define an explicit mapping for it.
+     -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>  
+      
+    <bean id="themeResolver" class="org.springframework.web.servlet.theme.FixedThemeResolver">
+        <property name="defaultThemeName">
+                <value>themes</value>
+        </property>
+    </bean>
+
+    <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+    </bean>      
+    
+     <!--
+          Manager services
+     -->   
+    <bean id="courseIntroductionManager" class="tss.service.CourseIntroductionManager"/>  
+    <bean id="topicOrientationManager" class="tss.service.TopicOrientationManager"/>
+    <bean id="topicEvaluationManager" class="tss.service.TopicEvaluationManager"/>  
+    <bean id="subTopicManager" class="tss.service.SubTopicManager"/>
+    <bean id="evaluationEnvironmentManager" class="tss.service.EvaluationEnvironmentManager"/>
+    <bean id="orientationEnvironmentManager" class="tss.service.OrientationEnvironmentManager"/>
+    <bean id="subtopicEnvironmentManager" class="tss.service.SubtopicEnvironmentManager"/>
+    
+    <!--
+          Simple TTS controllers
+     -->   
+    <bean id="TSSController" class="tss.web.TSSController"/>
+
+    <bean id="completionMessage" class="tss.service.CompletionMessage"/>   
+    
+    <bean id="CompletionMessageController" class="tss.web.CompletionMessageController">  
+        <property name="completionMessage" ref="completionMessage"/>    
+    </bean>
+    
+    <!--
+          Form controllers
+     -->              
+    <bean id="selectings" class="tss.service.Selectings"/>
+
+    <bean id="CourseIntroductionFormController" class="tss.web.CourseIntroductionFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="courseIntroductionSave"/>
+        <property name="commandClass" value="tss.service.CourseIntroductionSave"/>
+        <property name="validator">
+            <bean class="tss.service.CourseIntroductionSaveValidator"/>
+        </property>
+        <property name="formView" value="courseIntroduction"/>
+        <property name="successView" value="topicOrientation.html"/>
+        <property name="courseIntroductionManager" ref="courseIntroductionManager"/>
+        <property name="selectings" ref="selectings"/>          
+    </bean>
+        
+    <bean id="SelectingCourseFormController" class="tss.web.SelectingCourseFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="selectingCourse"/>
+        <property name="commandClass" value="tss.service.SelectingCourse"/>
+        <property name="formView" value="selectingCourse"/>
+        <property name="successView" value="topicOrientation.html"/>
+        <property name="selectings" ref="selectings"/>          
+    </bean>
+    
+    <bean id="SelectingTopicFormController" class="tss.web.SelectingTopicFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="selectingTopic"/>
+        <property name="commandClass" value="tss.service.SelectingTopic"/> 
+        <property name="formView" value="selectingTopic"/>    
+        <property name="selectings" ref="selectings"/>       
+    </bean>
+
+    <bean id="BuildingEnvironmentFormController" class="tss.web.BuildingEnvironmentFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="buildingEnvironment"/>
+        <property name="commandClass" value="tss.service.BuildingEnvironment"/>
+        <property name="validator">
+            <bean class="tss.service.BuildingEnvironmentValidator"/>
+        </property>
+        <property name="evaluationEnvironmentManager" ref="evaluationEnvironmentManager"/>
+        <property name="orientationEnvironmentManager" ref="orientationEnvironmentManager"/>
+        <property name="subtopicEnvironmentManager" ref="subtopicEnvironmentManager"/>        
+        <property name="formView" value="buildingEnvironment"/>
+        <property name="successView" value="completionMessage.html"/>
+        <property name="completionMessage" ref="completionMessage"/>
+    </bean>
+
+    <bean id="TopicOrientationFormController" class="tss.web.TopicOrientationFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="topicOrientationSave"/>
+        <property name="commandClass" value="tss.service.TopicOrientationSave"/>
+        <property name="validator">
+            <bean class="tss.service.TopicOrientationSaveValidator"/>
+        </property>
+        <property name="formView" value="topicOrientation"/>
+        <property name="successView" value="topicEvaluation.html"/>
+        <property name="topicOrientationManager" ref="topicOrientationManager"/> 
+        <property name="selectings" ref="selectings"/>                
+    </bean>
+    
+    <bean id="TopicEvaluationFormController" class="tss.web.TopicEvaluationFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="topicEvaluationSave"/>
+        <property name="commandClass" value="tss.service.TopicEvaluationSave"/>
+        <property name="validator">
+            <bean class="tss.service.TopicEvaluationSaveValidator"/>
+        </property>
+        <property name="formView" value="topicEvaluation"/>
+        <property name="successView" value="completionMessage.html"/>
+        <property name="topicEvaluationManager" ref="topicEvaluationManager"/> 
+        <property name="selectings" ref="selectings"/>       
+        <property name="completionMessage" ref="completionMessage"/>            
+    </bean>        
+    
+    <bean id="SubTopicFormController" class="tss.web.SubTopicFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="subTopicSave"/>
+        <property name="commandClass" value="tss.service.SubTopicSave"/>
+        <property name="validator">
+            <bean class="tss.service.SubTopicSaveValidator"/>
+        </property>
+        <property name="formView" value="subTopic"/>
+        <property name="successView" value="completionMessage.html"/>
+        <property name="subTopicManager" ref="subTopicManager"/>
+        <property name="selectings" ref="selectings"/>        
+        <property name="completionMessage" ref="completionMessage"/>            
+    </bean>                      
+     
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/index.html">indexController</prop>
+                <prop key="/tss.html">TSSController</prop>
+                <prop key="/buildingEnvironment.html">BuildingEnvironmentFormController</prop>
+                <prop key="/courseIntroduction.html">CourseIntroductionFormController</prop>
+                <prop key="/selectingCourse.html">SelectingCourseFormController</prop>
+                <prop key="/selectingTopic.html">SelectingTopicFormController</prop>
+                <prop key="/topicOrientation.html">TopicOrientationFormController</prop>
+                <prop key="/topicEvaluation.html">TopicEvaluationFormController</prop>
+                <prop key="/subTopic.html">SubTopicFormController</prop>
+                <prop key="/completionMessage.html">CompletionMessageController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.JstlView"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+          
+    <!--
+          The index controller.
+     -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />    
+          
+</beans>
