@@ -62,7 +62,7 @@ public class Course {
                 for (File file: files) {
                     if (file.getName().equals(DefaultProperties.INTRODUCTION_XML)) {
                         introductionXml = new CourseIntroductionXML(file.getAbsolutePath());
-                    }                  
+                    }
                 }
                 
                 if (introductionXml != null) {

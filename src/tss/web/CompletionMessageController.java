@@ -7,7 +7,7 @@ package tss.web;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import tss.web.*;
 import org.springframework.web.servlet.mvc.Controller;

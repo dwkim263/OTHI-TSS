@@ -2,7 +2,7 @@ package tss.domain.xml;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import java.util.List;
 

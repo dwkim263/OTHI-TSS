@@ -2,7 +2,7 @@ package tss.service;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import tss.domain.Course;
 import tss.domain.Topic;

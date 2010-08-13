@@ -2,7 +2,7 @@ package tss.domain;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import java.beans.PropertyEditorSupport;
 import org.apache.commons.logging.Log;

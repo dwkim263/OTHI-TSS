@@ -2,7 +2,7 @@ package tss.service;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import java.io.*;
 import org.apache.commons.logging.Log;

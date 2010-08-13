@@ -2,7 +2,7 @@ package tss.domain;
 
 /**
  * defining default value of game
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import java.io.*;
 
@@ -19,7 +19,7 @@ public class DefaultProperties {
     public static String STATION_XML = "stations.xml";
 
     public static String NPC_XML = "npc.xml";
-//    public static String CONFIG_DIR = APP_ROOT + "config" + File.separator;
+//    public static String CONFIG_DIR = APP_ROOT + "definitions" + File.separator;
 
     //PLACE XML
     public static String PLACE_XML = "place.xml";
@@ -59,7 +59,7 @@ public class DefaultProperties {
 
     static public String getAppConfigBase() {
         if (appConfigBase == null) {
-            appConfigBase = getAppRoot() + File.separator + "config";
+            appConfigBase = getAppRoot() + File.separator + "definitions";
         }
 
         return appConfigBase;

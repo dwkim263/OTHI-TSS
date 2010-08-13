@@ -2,7 +2,7 @@ package tss.service;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 
 public class Selectings {

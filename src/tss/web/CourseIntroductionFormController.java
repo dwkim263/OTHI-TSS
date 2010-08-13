@@ -7,7 +7,7 @@ package tss.web;
 
 /**
  *
- * @author Dong Won Kim
+ * @author Dong Won (Steven) Kim
  */
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.ModelAndView;
